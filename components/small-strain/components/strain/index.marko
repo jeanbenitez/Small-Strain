@@ -1,0 +1,93 @@
+class {
+
+    onInput(input) {
+
+        this.state = {
+            wireHeight:input.wireHeight,
+            barWidth:input.barWidth,
+            theta:input.theta
+        };
+
+    }
+
+}
+
+style {
+
+    #app{
+        background-image: url('img/0134302013.png');
+        height: 460px;
+        width: 538px;
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0px auto 100px auto;
+        position: relative;
+    }
+
+    #app .internal{
+        position: absolute;
+        width: 300px;
+        height: 225px;
+        top: 28.5%;
+        left: 17.8%;
+    }
+
+    #app .wire {
+        background-image: url('img/0134302012B.png');
+        width: 10px;
+        height: 100%;
+        position: absolute;
+        background-position: center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        left: 0;
+        top: 0;
+    }
+
+    #app .bar {
+        background-image: url('img/0134302012C.png');
+        height: 38px;
+        width: 145%;
+        position: absolute;
+        background-position: center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        right: -25px;
+        bottom: -15px;
+        transform-origin: right;
+        transform: rotate(-0deg);
+    }
+
+    #app .value{
+        position: absolute;
+        bottom: -60px;
+        right: 80px;
+        font-size: 25px;
+        padding: 5px;
+        border: 1px solid #777777;
+        background-color: white;
+        color: blue;
+    }
+    
+}
+
+
+<div#app>
+    
+    <div.internal>
+    
+        <div.wire style={
+            height : state.wireHeight
+        }></div>
+    
+        <div.bar style={
+            transform : 'rotate(' + (state.theta * -1) + 'deg)'
+        }></div>
+
+        <span.value>
+            ${state.theta}°
+        </span>
+    </div>
+
+</div>

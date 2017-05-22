@@ -1,0 +1,113 @@
+class {
+
+    onCreate() {
+        this.state = {
+            solution_one:0,
+            solution_two:0,
+            percentage_changed:0,
+
+            theta:0,
+
+            height:300,
+            width:400,
+            scale:0.75,
+
+            wireHeight:300
+        };
+
+    }
+
+    toRadians(degrees) {
+        return degrees * Math.PI / 180;
+    }
+
+    toDegrees(radians) {
+        return radians * 180 / Math.PI;
+    }
+
+    onSlide(theta) {
+
+        theta = Number(theta);
+
+        this.state.wireHeight = (
+            Math.tan(this.toRadians(theta)) * this.state.width + this.state.height + 10
+        ) * this.state.scale;
+
+        this.state.theta = theta;
+
+        this.calculateSolutions(theta);
+
+    }
+
+    calculateSolutions(theta) {
+
+        let realHeight = this.state.height * this.state.scale;
+        let realWidth = this.state.width * this.state.scale;
+
+        let alpha = this.toDegrees( Math.atan( realWidth / realHeight ) );
+
+        let phi = 90 - alpha + theta;
+
+        let lad = Math.sqrt(
+            Math.pow(realWidth , 2) + Math.pow(realHeight , 2)
+        );
+
+        let deltaL = Math.sqrt(
+            ( Math.pow(lad,2) + Math.pow(realWidth,2) ) - 2 * ( lad * realWidth * ( Math.cos( this.toRadians(phi) ) ) )
+        );
+
+        this.state.solution_one = (deltaL-realHeight)/realHeight;
+        
+        this.state.solution_two = this.toRadians(theta) * realWidth/realHeight;
+
+        this.state.percentage_changed = 100*(
+            Math.abs( this.state.solution_one - this.state.solution_two ) /
+            ( (this.state.solution_one + this.state.solution_two) / 2 )
+        );
+
+        if(isNaN(this.state.percentage_changed)){
+            this.state.percentage_changed = 0;
+        }
+
+    }
+
+}
+
+style {
+
+    #strain {
+        font-family: Helvetica;
+    }
+
+    #strain > section {
+        display: flex;
+        align-content: space-between;
+        justify-content: center;
+        margin: 0px auto;
+    }
+
+    #strain h2,
+    #strain p
+     {
+        margin: 5px;
+    }
+
+}
+
+<div#strain>
+
+    <header-strain />
+    <description-strain />
+
+    <strain height=(state.height) width=(state.width) wireHeight=(state.wireHeight) theta=(state.theta) />
+
+    <section>
+        <solution number="one" desc="Based on exact change in geometry" value=(state.solution_one) />
+        <solution number="two" desc="Based on small strain approximation" value=(state.solution_two) />
+    </section>
+
+    <percentage-changed value=(state.percentage_changed) />
+            
+    <slider min="0" max="25" step="1" on-slide('onSlide') theta=(state.theta) />
+
+</div>

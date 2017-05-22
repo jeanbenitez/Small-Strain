@@ -1,0 +1,35 @@
+class {
+    onInput(input) {
+
+        this.state = {
+            value:input.value,
+        };
+        
+    }
+}
+
+style {
+    div.percentage_changed {
+        flex: 1;
+        text-align: center;
+    }
+
+    div.percentage_changed h2 {
+        color: #3f65e4;
+    }
+
+    div.percentage_changed .formula {
+        color: blue;
+        border: 1px solid black;
+        display: inline-block;
+        position: relative;
+        padding: 5px;
+    }
+
+}
+
+<div.percentage_changed>
+    <h2>PERCENTAGE CHANGE:</h2>
+    <p class="description">Between SOLUTION ONE and SOLUTION TWO</p>
+    <p class="formula">${state.value.toFixed(5)}%</p>
+</div>

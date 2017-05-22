@@ -1,0 +1,23 @@
+{
+  "name": "Small Strain",
+  "version": "1.0.0",
+  "description": "The test consists of the coding and design of an interactive widget, which has been designed from a physics book, Mechanics of Materials.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeanbenitez/small-strain"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.13.0",
+    "eslint-config-marko": "^1.0.1"
+  },
+  "dependencies": {
+    "marko": "^4.2.4",
+    "marko-starter": "^1.0.0"
+  },
+  "scripts": {
+    "start": "marko-starter server",
+    "build": "marko-starter build"
+  },
+  "private": true
+}

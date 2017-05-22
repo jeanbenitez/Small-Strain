@@ -1,0 +1,34 @@
+class {
+
+	onCreate(input) {
+
+		this.state = {
+			min: input.min,
+			max: input.max,
+			step: input.step,
+			onslide: input.onslide,
+			theta:input.theta
+		};
+
+	}
+
+	onSlide() {
+		let theta = this.getEl('theta').value;
+		this.emit('slide', theta);
+	}
+
+}
+
+<section>
+    <h3>Drag slide to change (THETA)</h3>
+
+    <input type="range"
+    	value=(input.theta)
+    	key="theta"
+    	min=(input.min)
+    	max=(input.max)
+    	step=(input.step)
+    	on-input('onSlide') />
+
+    <em>Degrees (°)</em>
+</section>

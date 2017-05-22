@@ -1,0 +1,53 @@
+class {
+    onInput(input) {
+
+        this.state = {
+            number:input.number,
+            desc:input.desc,
+            value:input.value,
+        };
+        
+    }
+}
+
+style {
+    div.solution {
+        flex: 1;
+        text-align: center;
+    }
+
+    div.solution h2 {
+        color: #3f65e4;
+    }
+
+    div.solution .redtext {
+        color: red;
+        font-weight: bold;
+    }
+
+    div.solution .formula {
+        color: blue;
+        border: 1px solid black;
+        display: inline-block;
+        position: relative;
+        padding: 5px;
+    }
+
+    div.solution .formula.ebd:before{
+        content: url('img/ebd.gif');
+        position:absolute;
+        top: 8px;
+        left: -80px;
+    }
+
+}
+
+
+<div.solution>
+    <h2>SOLUTION ${state.number.toUpperCase()}:</h2>
+    <p class="description">${state.desc}</p>
+    <p class="redtext">Normal Strain</p>
+    <p class="formula ebd">
+        <span class="value">${state.value.toFixed(5)}</span> mm/mm
+    </p>
+</div>
